@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Electron TAP Interface</title>
+    <script src='renderer.js'></script> 
+  </head>
+  <body onload="start()">
+    <H2>TAP Interface</H2>
+    <br>
+    <button onClick="start()" value="start" id="start">Start</button>  
+    <button onclick="stop();" value="stop" id="stop">Stop</button>
+    <span>Interface is </span><span id="status"></span>
+    <br>
+    <h4>Activity Log</h4>
+    <div style="border-style: inset;">
+      <p id="display"></p>
+    </div>
+    <script>require('electron').ipcRenderer.on('message', function(event, message) {
+      if(message == 'display'){
+      displayMsg();}else{document.getElementById("display").innerHTML = "not display";}
+      });
+    </script>
+    
+  </body>
+</html>
